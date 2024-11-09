@@ -1,0 +1,30 @@
+<div class="row">
+  <ng-container *ngIf="dbzAll && dbzAll.items && dbzAll.items.length>0"; else noDbz>
+    <div class="col-lg-3 mb-4 mt-4" *ngFor="let dbz of dbzAll.items">
+    <div class="card border-0 shadow-sm mb-2 mt-4">
+    <img [src]="dbz.data?.image" class="card-img-top fixed-img" alt="..."/>
+      <div class="card-body bg-light text-center p-4">
+        <h4 class="">{{dbz.name.toUpperCase()}}</h4>
+        <div class="d-flex justify-content-center mb-3">
+          <small class="mr-3"><i class="bi bi-fire"></i> Afiliacion: {{dbz.affiliation}}</small>
+        </div>
+        <a (click)="openModal(dbz.data!)" class="btn btn-primary px-4 mx-auto my-2">Más Información</a>
+      </div>
+    </div>
+  </div>
+
+  </ng-container>
+
+
+  <ng-template #noDbz>
+    <div class="col-12">
+      <div class="alert alert-warning" role="alert">
+        No Dbz found
+      </div>
+    </div>
+  </ng-template>
+
+</div>
+
+
+<dbz-modal />

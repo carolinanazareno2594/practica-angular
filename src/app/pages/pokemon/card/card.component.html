@@ -1,0 +1,33 @@
+<div class="row">
+  <ng-container *ngIf="pokemonsAll && pokemonsAll.results && pokemonsAll.results.length>0" ; else noPokemons>
+    <div class="col-lg-3 mb-4" *ngFor="let pokemon of pokemonsAll.results">
+    <div class="card border-0 shadow-sm mb-2 mt-4">
+      <img [src]="pokemon.data?.sprites?.versions?.['generation-v']?.['black-white']?.animated?.front_shiny"
+        class="card-img-top fixed-img" alt="..." />
+      <div class="card-body bg-light text-center p-4">
+        <h4 class="">{{pokemon.name.toUpperCase()}}</h4>
+        <div class="d-flex justify-content-center mb-3">
+          <small class="mr-3"><i class="bi bi-h-circle-fill"></i> {{pokemon.data?.height}}</small>
+          <small class="mr-3"><i class="bi bi-explicit"></i> {{pokemon.data?.base_experience}}</small>
+          <small class="mr-3"><i class="bi bi-sort-numeric-down"></i> {{pokemon.data?.id}}</small>
+        </div>
+        <a (click)="openModal(pokemon.data!)" class="btn btn-primary px-4 mx-auto my-2">Más Información</a>
+      </div>
+    </div>
+  </div>
+
+  </ng-container>
+
+
+  <ng-template #noPokemons>
+    <div class="col-12">
+      <div class="alert alert-warning" role="alert">
+        No pokemons found
+      </div>
+    </div>
+  </ng-template>
+
+</div>
+
+
+<pokemon-modal />
